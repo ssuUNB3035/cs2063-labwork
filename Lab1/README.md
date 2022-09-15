@@ -158,7 +158,7 @@ This directory contains many different types of resources that get used inside a
 * The drawable folder can contain custom image files that can be utilized in your application to add finely customized theming or object styles, icons or any other visual assets necessary for your application.
 
 * The layout directory contains the  _activity_main.xml_ file along with other resource files.
-	* The _activity_main.xml_ is the resource that is sent as a parameter to the ```setContentView()``` method call in our MainActivity.java class file discussed above
+	* The _activity_main.xml_ is the resource that is sent as a parameter to the ```setContentView()``` method call in our MainActivity.kt class file discussed above
 		* Open this file to once again reveal the GUI layout editor
 		* Near the bottom left corner of this layout editor window, switch from the Design tab to the Text tab
 		* You’ll be presented with a hierarchy of XML tags each containing attributes relevant to defining the layout for the application you created in the GUI editor
@@ -243,7 +243,7 @@ Take screenshots of your application with French and Spanish translations and sa
 
 Being able to identify what is occurring within your application at certain points in the running cycle is important for any development process. Android Studio offers the ability to have log messages printed to the console.
 
-1. Open the _MainActivity.java_ class file
+1. Open the _MainActivity.kt_ class file
 2. Immediately after the class declaration add the following string:
 
 ```kotlin
