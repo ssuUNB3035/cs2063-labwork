@@ -26,7 +26,7 @@ The Android API Guide succinctly states an "Intent is a messaging object you can
 * Passing information with Intents
 * Application-specific Intent Filters
 * Permissions
-* `startActivityForResult()`
+* Activity Result APIs
 
 The goal of this lab is to create a multiple Activity application that uses multiple explicit and implicit Intents. We'll access activities from within our application as well as request access for activities outside our application.
 
@@ -127,7 +127,7 @@ We can provide information to the ```Activity``` we intend to start. This inform
 http://developer.android.com/guide/components/intents-common.html#Email
 
 For this task we will be implementing your email ```Button```'s ```setOnClickListener()```.
-1. Build an email-only ```Intent``` that __does__ include attachments and is to be used by email applications only 
+1. Build an email-only ```Intent``` that __does not__ include attachments and is to be used by email applications only 
    * For testing give your ```Intent``` three extras
         * One for the recipient email addresses (just have one recipient, and make it you)
         * One for the subject line “CS2063 Lab 3”
@@ -173,7 +173,7 @@ But where should we call ```galleryAddPic()```?  Let's look at that next.
 **Task 9** 
 Following up on the changes made for Task 7 we will now look to replace the deprecated ```startActivityForResult()``` functionality.  This has been replaced by the [Activity Result APIs](https://developer.android.com/training/basics/intents/result).  
 
-To help with this you will notice an attribute called cameraActivityResultLauncher near the top of the file.  We will be working with this object to register a listener for photo capture events.
+To help with this you will notice an attribute called ```cameraActivityResultLauncher``` near the top of the file.  We will be working with this object to register a listener for photo capture events.
 
 1. Replace the deprecated line 
 ```kotlin
