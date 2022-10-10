@@ -1,15 +1,4 @@
-# CS2063 Fall 2022 Lab Projects
+# CS2063 Fall 2022 Lab Work
 
-This repository contains the labs to be used in the CS2063 Fall 2022 course at UNB.  New labs will be added as the semester goes on.
-
-### Android Studio
-* The code examples are built against and run in the Android Studio Chipmunk (2021.2.1 Patch 2)
-* Should you use a different version you will be prompted to update the Gradle plugin used
-
-## Android SDK
-* For the most part the code uses API level 26 (Android Oreo 8.0) as a baseline
-* Newer versions of the API can be used as well
-* Please ensure that the correct SDK platforms are installed for the devices being used for testing
-
-## Lab marking
-Each lab will contain a list of deliverables which will need to be submitted upon completion.
+This contains the work done for the labs in class CS2063.
+This repo exists solely for referencing in the app project and sharing among lab team members.
