@@ -1,15 +1,13 @@
 package mobiledev.unb.ca.lab2activitylifecycle
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-class ActivityOne : AppCompatActivity() {
+class ActivityTwo : AppCompatActivity() {
     // NOTE:
     // To track the number of times activity lifecycle methods
     // have been called for each respective Activity we will need
@@ -39,27 +37,9 @@ class ActivityOne : AppCompatActivity() {
     private var restartTextView: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.i(TAG, "onCreate() called")
+        Log.i(TAG, "onCreate() called in activity 2")
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_one)
-
-        val activityTwoButton = findViewById<Button>(R.id.btnLaunchActivityTwo)
-        activityTwoButton.setOnClickListener {
-            // TODO 3:
-            //  Launch the ActivityTwo class using the intent below. For more information,
-            //  consult the Android API documentation for starting activities:
-            //  https://developer.android.com/reference/android/app/Activity#startActivity(android.content.Intent)
-            //  NOTE:
-            //   Intents are a way to announce to the Android operating system that
-            //   your application intends to perform some request. These requests
-            //   can be directly calling some specified Activity, as we will be doing
-            //   here, or it can announce the intent of having some particular
-            //   activity type respond to its request time; for instance indicating
-            //   it will need access to an email application activity. We will
-            //   investigate intents further in a future lab!
-            val intent = Intent(this@ActivityOne, ActivityTwo::class.java)
-            startActivity(intent)
-        }
+        setContentView(R.layout.activity_two)
 
         // TODO 4
         //  Use the above Button resource reference example to capture TextView

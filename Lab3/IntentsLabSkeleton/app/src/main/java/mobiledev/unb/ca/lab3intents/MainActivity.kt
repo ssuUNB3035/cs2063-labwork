@@ -1,14 +1,27 @@
 package mobiledev.unb.ca.lab3intents
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.i("Main activity","On create, for main activity");
         setContentView(R.layout.activity_main)
+
+        var button = findViewById<Button>(R.id.btnStart);
+        button.setOnClickListener {
+            // Code here executes on main thread after user presses button
+            val intent = Intent(this@MainActivity, ExternalActivityCalls::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

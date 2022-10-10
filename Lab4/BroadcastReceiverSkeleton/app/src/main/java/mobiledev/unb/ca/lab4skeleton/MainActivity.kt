@@ -19,6 +19,13 @@ import androidx.core.content.FileProvider
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Intent.ACTION_BATTERY_LOW
+import android.content.Intent.ACTION_BATTERY_OKAY
+import android.widget.Toast
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +39,31 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var filter = IntentFilter()
+        filter.addAction(ACTION_BATTERY_LOW)
+        filter.addAction(ACTION_BATTERY_OKAY)
+        this.registerReceiver(batteryInfoReceiver, filter)
+
+        val mChannel = NotificationChannel("0", getString(R.string.channel_name), NotificationManager.IMPORTANCE_HIGH)
+        mChannel.description = getString(R.string.channel_description)
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(mChannel)
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this@MainActivity, AlarmReceiver::class.java)
+        intent.action = "MyBroadcastReceiverAction";
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+        alarmManager.setInexactRepeating(
+            AlarmManager.RTC_WAKEUP,
+            System.currentTimeMillis(),
+            10000,
+            pendingIntent);
+
+        if (pendingIntent != null && alarmManager != null) {
+            //alarmManager.cancel(pendingIntent)
+        }
+
         
         val cameraButton = findViewById<Button>(R.id.button)
         cameraButton.setOnClickListener { dispatchTakePhotoIntent() }
@@ -142,6 +174,30 @@ class MainActivity : AppCompatActivity() {
             arrayOf(file.toString()),
             arrayOf(file.name),
             null)
+    }
+
+    private val batteryInfoReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(p0: Context, p1: Intent) {
+            if (p1.getAction().equals(Intent.ACTION_BATTERY_LOW)) {
+                val text = "Low Battery"
+                val duration = Toast.LENGTH_SHORT
+                val toast = Toast.makeText(p0, text, duration)
+
+                toast.show()
+            } else if (p1.getAction().equals(Intent.ACTION_BATTERY_OKAY)) {
+                val text = "Ok Battery"
+                val duration = Toast.LENGTH_SHORT
+                val toast = Toast.makeText(p0, text, duration)
+
+                toast.show()
+
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        this.unregisterReceiver(batteryInfoReceiver)
+        super.onDestroy()
     }
 
     companion object {
